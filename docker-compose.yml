@@ -3,20 +3,20 @@ version: '3.7'
 services:
   mysql:
     image: mysql:5.7
-    container_name: mysql_container
+    container_name: mysql_container_v2
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_USER: user
       MYSQL_PASSWORD: userpassword
       MYSQL_DATABASE: techO
     ports:
-      - "3306:3306"
+      - "3307:3306"
     networks:
       - mi_proyecto_docker_backend_network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin_container
+    container_name: phpmyadmin_container_v2
     environment:
       PMA_HOST: mysql 
       MYSQL_ROOT_PASSWORD: rootpassword
@@ -27,4 +27,4 @@ services:
 
 networks:
   mi_proyecto_docker_backend_network:
-    external: true  
+    external: true
