@@ -55,15 +55,20 @@ export const getEmployeeById = async (req, res) => {
 // };
 
 //Crear empleado con transacciones
-export const createEmployees = async (req,res)=>{
+export const createEmployees = async (req, res) => {
+  const connection = await pool.getConnection();
   try {
     const { name, salary } = req.body;
-    const connection = await pool.getConnection();
     await connection.beginTransaction();
+
     const [result] = await connection.query(
       "INSERT INTO employee (name, salary) VALUES (? , ?)",
       [name, salary]
     );
+    // if(result){
+
+    //   throw new Error("Error en el servidor");
+    // }
     await connection.commit();
     connection.release();
     res.send({
@@ -79,7 +84,7 @@ export const createEmployees = async (req,res)=>{
       error: 500,
     });
   }
-}
+};
 
 //update employees
 export const updateEmployees = async (req, res) => {

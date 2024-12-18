@@ -1,5 +1,6 @@
 import express from "express";
 import employeesRoutes from "./routes/employees.routes.js";
+import enterprisesRoutes from "./routes/enterprise.routes.js";
 import indexRoutes from "./routes/index.routes.js";
 import './config.js';
 import dotenv from 'dotenv';
@@ -13,6 +14,8 @@ app.use(express.json());
 
 app.use(indexRoutes);
 app.use('/api',employeesRoutes);
+app.use('/api',enterprisesRoutes);
+
 
 app.use((req, res) => {
   res.status(404).json({
